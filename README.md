@@ -61,7 +61,7 @@ All in `src/main/java/.../algo`, independent of Spring, and each one tested agai
 
 **Why A\* stays exact.** A* orders the search by `cost so far + h(node)`, where `h` is a lower bound on the remaining cost. Here `h` is the straight-line (haversine) distance to the target, or that distance divided by the fastest speed limit when minimizing time. A lower bound is only valid if no road is shorter than the straight line between its ends, so `POST /api/roads` rejects such a road with `400`. With a valid bound A* returns the same cost as Dijkstra, which a test checks on every pair of nodes in random graphs.
 
-**Tour planning.** `POST /api/tours` runs one Dijkstra from each stop to build a cost matrix, then Held-Karp: `best[S][j]` is the cheapest way to start at the origin, visit exactly the set `S`, and end at `j`. For 12 stops that is about 600 thousand steps, against 40 million orders by brute force.
+**Tour planning.** `POST /api/tours` runs one Dijkstra from each stop to build a cost matrix, then Held-Karp: `best[S][j]` is the cheapest way to start at the origin, visit exactly the set `S`, and end at `j`. For 12 stops after the start that is about 600 thousand steps, against 12! ≈ 479 million orders by brute force.
 
 ## Database design
 

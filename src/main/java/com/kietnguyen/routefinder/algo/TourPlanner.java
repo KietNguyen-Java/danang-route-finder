@@ -9,7 +9,7 @@ import java.util.Arrays;
  * <p>{@code best[mask][j]} is the cheapest way to leave stop 0, visit exactly the stops in
  * {@code mask}, and end at stop {@code j}. Each state extends to one more unvisited stop.
  * O(2^n · n^2) time and O(2^n · n) memory, versus O(n!) for trying every order:
- * for 12 stops that is about 600,000 steps instead of 40 million orders.
+ * for 12 stops after the start that is about 600,000 steps instead of 12! = 479 million orders.
  */
 public final class TourPlanner {
 
