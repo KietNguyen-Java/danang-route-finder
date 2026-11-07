@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: route-finder
+  # Default: in-memory H2 in PostgreSQL mode, so the app runs with no setup.
+  # Use the "postgres" profile (see docker-compose.yml) for a real database.
+  datasource:
+    url: jdbc:h2:mem:routes;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none # the schema is owned by Flyway migrations
+  flyway:
+    enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+---
+spring:
+  config:
+    activate:
+      on-profile: postgres
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/routes}
+    username: ${DB_USER:routes}
+    password: ${DB_PASSWORD:routes}

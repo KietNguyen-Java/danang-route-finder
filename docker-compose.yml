@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: routes
+      POSTGRES_USER: routes
+      POSTGRES_PASSWORD: routes
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U routes"]
+      interval: 5s
+      retries: 10
